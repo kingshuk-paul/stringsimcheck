@@ -7,3 +7,5 @@ float lcs_score(const std::string* src, const std::string* dest);
 int levenshtein(const std::string* src, const std::string* dest);
 
 int damerau_levenshtein(const std::string* src, const std::string* dest);
+
+float jaro(std::string* src, std::string* dest);

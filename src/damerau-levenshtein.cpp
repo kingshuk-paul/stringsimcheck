@@ -1,5 +1,4 @@
 #include <string>
-#include <iostream>
 
 
 int damerau_levenshtein(const std::string* src, const std::string* dest)
