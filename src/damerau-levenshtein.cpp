@@ -1,22 +1,24 @@
 #include <string>
+#include <iostream>
 
-int levenshtein(const std::string* src, const std::string* dest)
+
+int damerau_levenshtein(const std::string* src, const std::string* dest)
 {
     int len_src = src->length();
     int len_dest = dest->length();
-    int lev_dist = 0;
+    int dem_lev_dist = 0;
 
     if (len_src == 0 && len_dest == 0)
     {
-        lev_dist = 0;
+        dem_lev_dist = 0;
     }
     else if (len_src == 0)
     {
-        lev_dist = len_dest;
+        dem_lev_dist = len_dest;
     }
     else if (len_dest ==0)
     {
-        lev_dist = len_src;
+        dem_lev_dist = len_src;
     }
     else
     {
@@ -39,12 +41,24 @@ int levenshtein(const std::string* src, const std::string* dest)
                     {
                         fromDiagCell += 1;
                     }
-                    LevMat[i][j] = std::min(fromLeftCell, std::min(fromUpperCell, fromDiagCell));
+
+                    if (i > 1 && j > 1 && (src->at(i-2) == dest->at(j-1)) && (src->at(i-1)==dest->at(j-2)))
+                    {
+                        int fromTransposition = LevMat[i-2][j-2] + 1;
+
+                        LevMat[i][j] = std::min(fromTransposition, std::min(fromLeftCell, std::min(fromUpperCell, fromDiagCell)));
+
+                    }
+
+                    else 
+                    {
+                        LevMat[i][j] = std::min(fromLeftCell, std::min(fromUpperCell, fromDiagCell));
+                    }
                 }
             }
         }
 
-        lev_dist = LevMat[len_src][len_dest];
+        dem_lev_dist = LevMat[len_src][len_dest];
     }
-    return lev_dist;
+    return dem_lev_dist;
 }
