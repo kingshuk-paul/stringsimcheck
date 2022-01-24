@@ -1,0 +1,5 @@
+Makefile
+a.out
+test.cpp
+*.o
+.vscode/

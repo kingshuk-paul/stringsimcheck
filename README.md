@@ -6,7 +6,7 @@
 StringSimCheck is a simple library to check similarities between a source and a destination string. Algorithms implemented:
 
  - [x] Longest Common Substring
- - [ ] Levenshtein Distance
+ - [x] Levenshtein Distance
  - [ ] Damerau-Levenshtein Distance
  - [ ] Jaro-Winkler Similarity
  - [ ] Needleman-Wunsch Distance
