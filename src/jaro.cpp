@@ -58,3 +58,25 @@ float jaro(std::string* src, std::string* dest)
     return sim;
 
 }
+
+
+
+float jaro_winkler(std::string* src, std::string* dest)
+{
+    float jaro_sim = jaro(src, dest);
+    int len_src = src->length();
+    int len_dest = dest->length();   
+    int prefix_limit = std::min(4, std::min(len_src, len_dest));
+    int common_prefix = 0;
+
+    for (int i=0; i < prefix_limit; i++)
+    {
+        if (src->at(i)==dest->at(i))
+        {
+            common_prefix += 1;
+        }
+    }
+
+    jaro_sim += 0.1 * common_prefix * (1-jaro_sim);
+    return jaro_sim;
+}
